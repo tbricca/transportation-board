@@ -71,15 +71,27 @@ class App extends Component {
     } else {
       return (
         <div className='App'>
+           <div className="container-fluid">
+            <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+                {/* <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                </button> */}
+                <a className="navbar-brand" href="#">Transit Screen</a>
+                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div className="navbar-nav">
+                    <a className="nav-item nav-link active" href="#">Login <span className="sr-only">(current)</span></a>
+                    <a className="nav-item nav-link" href="#">Signup</a>
+                  </div>
+                </div>
+              </nav>
+              <div className='SignupBox'>
+                <Signup lift={this.liftTokenToState} />
+              </div>
 
-          <div className='SignupBox'>
-            <Signup lift={this.liftTokenToState} />
+              <div className='LoginBox'>
+                <Login lift={this.liftTokenToState} />
+              </div>
           </div>
-
-          <div className='LoginBox'>
-            <Login lift={this.liftTokenToState} />
-          </div>
-
         </div>
       );
     }
