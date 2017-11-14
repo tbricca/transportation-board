@@ -82,6 +82,10 @@ class App extends Component {
                     <a className="nav-item nav-link active" href="#">Login <span className="sr-only">(current)</span></a>
                     <a className="nav-item nav-link" href="#">Signup</a>
                   </div>
+                  {/* <ul className="nav navbar-nav navbar-right">
+                  <li><Link to="signup"><span className="glyphicon glyphicon-user"></span>Sign Up</Link></li>
+                  <li><Link to="login"><span className="glyphicon glyphicon-log-in"></span>Login</Link></li>
+                </ul> */}
                 </div>
               </nav>
               <div className='SignupBox'>
