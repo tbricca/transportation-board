@@ -8,8 +8,10 @@ import './App.css';
 import Signup from './Signup';
 import Login from './Login';
 import Logout from './Logout';
+import Home from './Home';
 import UserProfile from './UserProfile';
 import axios from 'axios';
+
 
 class App extends Component {
   constructor(props) {
@@ -70,17 +72,20 @@ class App extends Component {
       );
     } else {
       return (
+        <div>
+          <Router>
         <div className='App'>
            <div className="container-fluid">
             <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
                 {/* <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
                 </button> */}
-                <a className="navbar-brand" href="#">Transit Screen</a>
+                <Link className="navbar-brand" to="/">Transit Screen</Link>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div className="navbar-nav">
-                    <a className="nav-item nav-link active" href="#">Login <span className="sr-only">(current)</span></a>
-                    <a className="nav-item nav-link" href="#">Signup</a>
+                  <li><Link to="login"><span className="glyphicon glyphicon-log-in"></span>Login</Link></li>
+                  <li><Link to="signup"><span className="glyphicon glyphicon-signup"></span>Signup</Link></li>
+                    {/* <a className="nav-item nav-link" href="#">Signup</a> */}
                   </div>
                   {/* <ul className="nav navbar-nav navbar-right">
                   <li><Link to="signup"><span className="glyphicon glyphicon-user"></span>Sign Up</Link></li>
@@ -88,15 +93,22 @@ class App extends Component {
                 </ul> */}
                 </div>
               </nav>
-              <div className='SignupBox'>
+              {/* <div className='SignupBox'>
                 <Signup lift={this.liftTokenToState} />
               </div>
 
               <div className='LoginBox'>
                 <Login lift={this.liftTokenToState} />
-              </div>
+              </div> */}
+              
           </div>
+            <Route exact path="/" render={(props) => <Home />}/>
+             {/* Link to log in log out paths */}
+            <Route path="/login" render={(props)=> <Login lift={this.liftTokenToState} />} />
+            <Route path="/signup" render={(props)=> <Signup lift={this.liftTokenToState} />} />
         </div>
+      </Router>
+      </div>       
       );
     }
   }
