@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var axios = require('axios');
+var parseString = require('xml2js').parseString;
 
 var apiUrl = 'http://api.pugetsound.onebusaway.org/api/where/routes-for-location.xml?key=ec76e3f1-3c97-4f4a-a55e-447cfffa457b&lat=47.6120&lon=-122.335167';
 var cityMapper = "https://developer.citymapper.com/api/1/singlepointcoverage/?coord=51.578973%2C-0.124147&key=8d3b8bb18fc668fdf342d8e09fcf3249";
@@ -34,17 +35,24 @@ router.get("/", function(req, res, next){
     //     <!-- More routes -->
     //   </list>
        
-    
-        request({
+
+    request({
         url: "http://api.pugetsound.onebusaway.org/api/where/routes-for-location.xml?key=ec76e3f1-3c97-4f4a-a55e-447cfffa457b&lat=47.653435&lon=-122.305641",
         // busRoute: busRoute
         }, function (error, response, body) {
-            console.log(response);
+            
         if (!error && response.statusCode == 200) {
-            var dataObj = JSON.parse(body);
-           res.send(dataObj.Search);
+            
+            var xml = (body);
+            parseString(xml, function (err, result) {
+                var agency = result.response.data[0].references[0].agencies[0];
+                var routes = result.response.data[0].list[0].route.map(route => {
+                    return route;
+                })
+                res.send({agency, routes});
+            });
         }
-        });
+    });
 });
 
 module.exports = router
