@@ -8,8 +8,8 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            routes: [],
-            agency: []
+            // routes: {},
+            agency: {}
         }
 
         // this.handleChange = this.handleChange.bind(this)
@@ -19,19 +19,36 @@ class Home extends Component {
         // this gets the data from the backend
         axios.get('/bus-routes')
             .then(response => {
-                this.setState({ agency: response.data.agency, routes:response.data.routes });
+                var agency = response.data.agency;
+                var routes = response.data.routes;
+                this.setState({ agency: agency});
+                this.setState({ routes: routes});
+                // , routes: routes 
             });
     }
     render() {
+        var agency = "loading"
+        if (this.state.agency.agency) {
+            agency= this.state.agency.agency[0].name[0];
+        };
+        var routes = "loading"
+        var routeDescription = "loading"
+        if (this.state.routes) {
+            //  do a map to iterate through all the elements in the array
+            routes= this.state.routes[0].shortName,
+            routeDescription = this.state.routes[0].description
+            // routes=this.state.routes.routes[0]
+        }
         // let busRoute = this.state.busRoutes;
         // if (this.state.busRoutes){
-        // console.log( this.state.busRoutes );
+        // 
         return (
             <div>
             <h1>Transit Board</h1>
             <h4> A board to track all the transit around you </h4>
             <input className="searchbox" type='text' placeholder="Input your address here..." />
-            <p> Agency: {this.state.agency} Bus Routes: {this.state.routes} </p>
+            <p> Agency: {agency} Bus Routes: {routes} Route Description: {routeDescription} </p>
+            <p>Place second api here</p>
             </div>
         )
     }
