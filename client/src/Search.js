@@ -17,7 +17,14 @@ class Search extends Component {
         
         geocodeByAddress(this.state.address)
           .then(results => getLatLng(results[0]))
-          .then(latLng => console.log('Success', latLng))
+          // storing latLng separetly to then send to backend 
+          .then(latLng => {
+            var lat = latLng.lat;
+            var lng = latLng.lng;
+            console.log(lat, lng);
+          })
+            
+          
 
         //   .then(results => {
         //     var location = getLatLng(results[0])
@@ -30,7 +37,8 @@ class Search extends Component {
         //   .then(latln axios.get("/bus-Routes"))
           .catch(error => console.error('Error', error))
       }
-  
+      
+
     render () {
         const inputProps = {
             value: this.state.address,
@@ -44,7 +52,6 @@ class Search extends Component {
                     <PlacesAutocomplete inputProps={inputProps} />
                     <button type="submit">Submit</button>
                 </form>
-                <h2>LatLong: {}</h2>
             </div>
         )
     }
