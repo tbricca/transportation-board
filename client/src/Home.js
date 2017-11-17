@@ -13,7 +13,7 @@ class Home extends Component {
             agency: {}
         }
         let base = this
-        // this doesn't fire, doesn't connect to backend
+////////////// this doesn't fire, doesn't connect to backend ////////////
         axios.get('/bus-routes')
         .then(response => { 
             return response.json()
@@ -21,12 +21,11 @@ class Home extends Component {
         }).then(function(json) {
             console.log(json, 'Parsed json');
         })
-
-        // this.handleChange = this.handleChange.bind(this)
+ /// this.handleChange = this.handleChange.bind(this)
         // this.handleSubmit = this.handleSubmit.bind(this)
     }
     componentDidMount() {
-        // this gets the data from the backend
+        /////////// this was supposed to get the data from the backend ///////////////////////////
         axios.get('/bus-routes')
             .then(response => { 
                 console.log(response, "XKDJFFNJD");
@@ -48,7 +47,8 @@ class Home extends Component {
         console.log(theRoutes,"routes");
         // axios call didn't return any object 
 
-        // axios.get('/bus-routes')
+ ////////////////// Axios Call doesn't work here //////////////////
+            //////  // axios.get('/bus-routes')
         // .then(response => { 
         //     console.log(response, "XKDJFFNJD");
         //     var theRoutes = response.data.theRoutes;
@@ -58,7 +58,7 @@ class Home extends Component {
         //     // , routes: routes 
         // });
 
-        //ajax call didn't return anything either 
+    ///////////ajax call didn't return anything either ///////////////////////////
         // $.get('/busRoutes', {
         //     q: 'theRoutes'
         //   }).done(function(data) {
@@ -67,12 +67,13 @@ class Home extends Component {
           
         //   console.log('Just fired AJAX request!');
 
-
+//////////////////This call was from the xml file //////////////////
         // var agency = "loading"
         // if (this.state.agency.agency) {
         //    agency= this.state.agency.agency[0].name[0];
         //    console.log(agency);
         // };
+ //////////////////This call was from the xml file //////////////////
         // var routes = "loading"
         // var routeDescription = "loading"
         // if (this.state.routes) {
@@ -84,6 +85,7 @@ class Home extends Component {
         // let busRoute = this.state.busRoutes;
         // if (this.state.busRoutes){
         // 
+        
         return (
             <div>
             <Search />
@@ -92,7 +94,16 @@ class Home extends Component {
             <div className="card-block">
             
             {/* <h4> Agency: {agency} </h4> */}
-            <h4>Bus Routes: {theRoutes} </h4>
+            <div className = "testimonal" >
+            
+            <h4> Client Testimonal: </h4>
+                <p>
+                <h4>' I have never seen an easier to use transit tracker. <b>Thanks for making my life easier Tony!</b>' - Chad Coker  </h4>
+                <h4> "The only app that Tom Haverord can indorse." - Tom Haverford </h4>
+                <h4> <b>"Wish I thought of this"</b> - Matt Damon </h4>
+                <h4> "Did you see that Log in/Sign up feature?! <b>Game changer.</b> - Justen Cracraft " </h4>
+                </p>
+            </div>
             {/* <h4>Route Description: {routeDescription} </h4> */}
             </div>
             </div>

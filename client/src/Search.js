@@ -12,8 +12,8 @@ class Search extends Component {
     ////// unable to set state for routes or descriptions /////////////
             address: 'Seattle, WA', 
             data: [1,2],
-            busDescriptions: '',
-            theRoutes:[1,2]
+            busDescriptions: 'It will be great',
+            theRoutes:[]
             
                 
             
@@ -47,6 +47,7 @@ class Search extends Component {
                
          /////////// this worked on the backend so i tried it here; it didn't work ///////////
                 var theRoutesArr = body.data.theRoutes;
+                var theDescriptionsArr = body.data.busDescriptions;
                 // console.log(theRoutes);
 
                 // var theRoutes = body.data;
@@ -55,9 +56,11 @@ class Search extends Component {
                 // })
                 console.log(theRoutesArr);
                 this.setState({
-                    theRoutes: theRoutesArr
-                    
+                    theRoutes: theRoutesArr,
+                    busDescriptions: theDescriptionsArr
                 })
+
+                
                 // console.log(theRoutes);
                 // routes.forEach(function(route){
                 //     theRoutes.push(route.shortName)
@@ -132,14 +135,16 @@ class Search extends Component {
         return(
             <div>
                 <h1>Transit Board</h1>
-                <h4> A board to track all the transit around you </h4>
+                <h4> A board to track all the transit around you <b>(Beta Version)</b></h4>
                 <form onSubmit={this.handleFormSubmit}>
                     <PlacesAutocomplete inputProps={inputProps} />
                     <button type="submit">Submit</button>
                 </form>
                 <div>
-                    Your Bus Routes for this address: {this.state.theRoutes}
+                    <h4><b>Your Bus Routes for this address:</b> {this.state.theRoutes} </h4>
+                    <h4><b>Bus Route Descriptions:</b> {this.state.busDescriptions} </h4>
                 </div>
+
             </div>
         )
     }
