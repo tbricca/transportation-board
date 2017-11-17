@@ -19,7 +19,7 @@ class Home extends Component {
     componentDidMount() {
         // this gets the data from the backend
         axios.get('/bus-routes')
-            .then(response => {
+            .then(response => { 
                 var agency = response.data.agency;
                 var routes = response.data.routes;
                 this.setState({ agency: agency});
@@ -50,7 +50,9 @@ class Home extends Component {
             <p>Place second api here</p>
             </div>
         )
+        
     }
+    
         // return (
         //     <div>
         //         <p>Give it a moment would ya?</p>

@@ -22,7 +22,22 @@ class Search extends Component {
             var lat = latLng.lat;
             var lng = latLng.lng;
             console.log(lat, lng);
+            axios.post('/bus-routes', {
+                lat: lat,
+                lng: lng 
+            }).then(function (response) {
+                axios.get('/bus-routes');
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+            console.log ('made it here');
           })
+          
+          
+
+          
             
           
 
@@ -55,6 +70,7 @@ class Search extends Component {
             </div>
         )
     }
+    
         
 }
         
