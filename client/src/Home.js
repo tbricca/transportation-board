@@ -34,6 +34,22 @@ class Home extends Component {
         //     theRoutes = this.state.theRoutes;
         // };
         console.log(theRoutes,"routes");
+        // axios.get('/bus-routes')
+        // .then(response => { 
+        //     console.log(response, "XKDJFFNJD");
+        //     var theRoutes = response.data.theRoutes;
+        //     var busDescriptions = response.data.busDescriptions;
+        //     this.setState({ theRoutes: theRoutes});
+        //     this.setState({ busDescriptions: busDescriptions});
+        //     // , routes: routes 
+        // });
+        // $.get('/busRoutes', {
+        //     q: 'theRoutes'
+        //   }).done(function(data) {
+        //     console.log(data, 'data call here');
+        //   });
+          
+        //   console.log('Just fired AJAX request!');
 
 
         // var agency = "loading"

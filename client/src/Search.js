@@ -9,17 +9,24 @@ class Search extends Component {
     constructor(props) {
         super(props)
         this.state = { 
-            address: 'San Francisco, CA',
-            transit: 
+            address: 'Seattle, WA', 
+            data: {
+                theRoutes:[1,2],
+                busDescriptions: ''
+            }
+                
             
-            // transit:{}
+            // busNumbers: [1,2],
+            // busDescriptions: ''
         }
         this.onChange = (address) => this.setState({ address })
       }
     
       handleFormSubmit = (event) => {
         event.preventDefault()
-        
+
+        let base = this
+
         geocodeByAddress(this.state.address)
           .then(results => getLatLng(results[0]))
           // storing latLng separetly to then send to backend 
@@ -30,25 +37,39 @@ class Search extends Component {
             axios.post('/bus-routes', {
                 lat: lat,
                 lng: lng 
-            }).then(response => {
-                axios.get('/bus-routes');
-                console.log(response, 'here');
-                console.log(response.data);
-                var transit = response.data;
-                
-                console.log(transit);
-                // this.onChange = (transit) => this.setState({ transit })
-                    // transit:response.data
-                    // descriptions:response.data.busDescriptions
+            }).then(function (json) {
+                /* axios.get('/bus-routes'); */
+                console.log(json, 'here');
+
+                base.setState({
+                    data: {
+                        theRoutes: json.theRoutes,
+                        busDescriptions: json.busDescriptions
+                    }
+                    
+                }).catch(function(ex) {
+                    console.log('parsing json failed', ex)
                 })
                 
+                // console.log(response.data.busDescriptions);
+
+                // var busNumbers = response.data.theRoutes;
+                
+                // console.log(busNumbers);
+               
                 
             })
             .catch(function (error) {
                 console.log(error);
             })
             console.log ('made it here');
-          }
+          })
+          
+          
+
+          
+            
+          
 
         //   .then(results => {
         //     var location = getLatLng(results[0])
@@ -59,17 +80,34 @@ class Search extends Component {
 
           // get call to upload latLong
         //   .then(latln axios.get("/bus-Routes"))
-        //   .catch(error => console.error('Error', error))
-      
+          .catch(error => console.error('Error', error))
+      }
       
 
     render () {
-        
         const inputProps = {
             value: this.state.address,
             onChange: this.onChange,
         }
-        // var transit = this.state.transit.map((item, index) => (<p>item.number</p>))
+        $.get('/busRoutes', {
+            q: 'theRoutes'
+          }).done(function(data) {
+            console.log(data, 'data call here');
+          });
+          
+          console.log('Just fired AJAX request!');
+        // axios.get('/bus-routes')
+        // .then(response => { 
+        //     console.log(response, "XKDJFFNJD");
+        //     var theRoutes = response.data.theRoutes;
+        //     var busDescriptions = response.data.busDescriptions;
+        //     this.setState({ theRoutes: theRoutes});
+        //     this.setState({ busDescriptions: busDescriptions});
+        // });
+        // console.log(response);
+        // this.setState({
+        //     busNumbers: response.data.theRoutes,
+        // }) 
         return(
             <div>
                 <h1>Transit Board</h1>
@@ -79,7 +117,7 @@ class Search extends Component {
                     <button type="submit">Submit</button>
                 </form>
                 <div>
-                    {/* {transit} */}
+                    {/* {busNumbers} */}
                 </div>
             </div>
         )
