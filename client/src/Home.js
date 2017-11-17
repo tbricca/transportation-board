@@ -12,6 +12,15 @@ class Home extends Component {
             theRoutes: {},
             agency: {}
         }
+        let base = this
+        // this doesn't fire, doesn't connect to backend
+        axios.get('/bus-routes')
+        .then(response => { 
+            return response.json()
+            // console.log(response, "XKDJFFNJD");
+        }).then(function(json) {
+            console.log(json, 'Parsed json');
+        })
 
         // this.handleChange = this.handleChange.bind(this)
         // this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,12 +30,15 @@ class Home extends Component {
         axios.get('/bus-routes')
             .then(response => { 
                 console.log(response, "XKDJFFNJD");
-                var theRoutes = response.data.theRoutes;
-                var busDescriptions = response.data.busDescriptions;
-                this.setState({ theRoutes: theRoutes});
-                this.setState({ busDescriptions: busDescriptions});
-                // , routes: routes 
+        //         var theRoutes = response.data.theRoutes;
+        //         var busDescriptions = response.data.busDescriptions;
+        //         this.setState({ theRoutes: theRoutes});
+        //         this.setState({ busDescriptions: busDescriptions});
+        //         // , routes: routes 
             });
+        // router.get("/bus-routes", function(req, res) {
+            
+        //     });
     }
     render() {
         var theRoutes = "loading"
@@ -34,6 +46,8 @@ class Home extends Component {
         //     theRoutes = this.state.theRoutes;
         // };
         console.log(theRoutes,"routes");
+        // axios call didn't return any object 
+
         // axios.get('/bus-routes')
         // .then(response => { 
         //     console.log(response, "XKDJFFNJD");
@@ -43,6 +57,8 @@ class Home extends Component {
         //     this.setState({ busDescriptions: busDescriptions});
         //     // , routes: routes 
         // });
+
+        //ajax call didn't return anything either 
         // $.get('/busRoutes', {
         //     q: 'theRoutes'
         //   }).done(function(data) {
@@ -81,7 +97,7 @@ class Home extends Component {
             </div>
             </div>
             
-            <p>Place second api here</p>
+            {/* <p>Place second api here</p> */}
             </div>
             </div>
         )

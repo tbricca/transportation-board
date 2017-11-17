@@ -21,9 +21,10 @@ router.post("/", function(req, res, next){
     request({
         url: "http://api.pugetsound.onebusaway.org/api/where/routes-for-location.json?key=ec76e3f1-3c97-4f4a-a55e-447cfffa457b&lat="+lat+"&lon="+lng,
         // busRoute: busRoute
+        
         }, function (error, response, body) {
             console.log("XXXXXXXXXX", body)
-            // console.log(response);
+  /////// console.log(response);
             
             
         if (!error && response.statusCode == 200) {
@@ -31,13 +32,13 @@ router.post("/", function(req, res, next){
             console.log(body, "bus routes");
             console.log(JSON.parse(body).data.list, "bus routes");
             
-            //array to get specific bus routes
+////////array to get specific bus routes////////////////////////
             var theRoutes = []
             var routes = JSON.parse(body).data.list;
             routes.forEach(function(route){
                 theRoutes.push(route.shortName)
             });
-             // array to get bus decriptions 
+    //////// array to get bus decriptions //////////////////////////////
             var busDescriptions = []
             var descriptions = JSON.parse(body).data.list;
             descriptions.forEach(function(description) {
@@ -48,6 +49,8 @@ router.post("/", function(req, res, next){
             console.log(busDescriptions);
             
             console.log(routes.shortname, "ahhhhhhhhhhhhhh");
+
+    ////////////No longer need XML parsing because I was able to send back data a JSON file         
             // for(var i = 0; i < length; i++)
             // var xml = (body);
             // parseString(xml, function (err, result) {
@@ -57,6 +60,7 @@ router.post("/", function(req, res, next){
             //     var routes = result.response.data[0].list[0].route.map(route => {
             //         return route;
                 }
+                // this does not get sent back
                 res.send({theRoutes, busDescriptions});
             });
         });
