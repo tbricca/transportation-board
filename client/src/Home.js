@@ -9,7 +9,7 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            // routes: {},
+            theRoutes: {},
             agency: {}
         }
 
@@ -20,34 +20,53 @@ class Home extends Component {
         // this gets the data from the backend
         axios.get('/bus-routes')
             .then(response => { 
-                var agency = response.data.agency;
-                var routes = response.data.routes;
-                this.setState({ agency: agency});
-                this.setState({ routes: routes});
+                console.log(response, "XKDJFFNJD");
+                var theRoutes = response.data.theRoutes;
+                var busDescriptions = response.data.busDescriptions;
+                this.setState({ theRoutes: theRoutes});
+                this.setState({ busDescriptions: busDescriptions});
                 // , routes: routes 
             });
     }
     render() {
-        var agency = "loading"
-        if (this.state.agency.agency) {
-            agency= this.state.agency.agency[0].name[0];
-        };
-        var routes = "loading"
-        var routeDescription = "loading"
-        if (this.state.routes) {
+        var theRoutes = "loading"
+        // if (this.state.theRoutes) {
+        //     theRoutes = this.state.theRoutes;
+        // };
+        console.log(theRoutes,"routes");
+
+
+        // var agency = "loading"
+        // if (this.state.agency.agency) {
+        //    agency= this.state.agency.agency[0].name[0];
+        //    console.log(agency);
+        // };
+        // var routes = "loading"
+        // var routeDescription = "loading"
+        // if (this.state.routes) {
             //  do a map to iterate through all the elements in the array
-            routes= this.state.routes[0].shortName,
-            routeDescription = this.state.routes[0].description
+            // routes= this.state.routes[0].shortName,
+            // routeDescription = this.state.routes[0].description
             // routes=this.state.routes.routes[0]
-        }
+        // }
         // let busRoute = this.state.busRoutes;
         // if (this.state.busRoutes){
         // 
         return (
             <div>
             <Search />
-            <p> Agency: {agency} Bus Routes: {routes} Route Description: {routeDescription} </p>
+            <div className="container-fluid">
+            <div className="card">
+            <div className="card-block">
+            
+            {/* <h4> Agency: {agency} </h4> */}
+            <h4>Bus Routes: {theRoutes} </h4>
+            {/* <h4>Route Description: {routeDescription} </h4> */}
+            </div>
+            </div>
+            
             <p>Place second api here</p>
+            </div>
             </div>
         )
         

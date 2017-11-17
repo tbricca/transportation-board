@@ -80,10 +80,10 @@ class App extends Component {
                 {/* <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                   <span className="navbar-toggler-icon"></span>
                 </button> */}
-                <Link className="navbar-brand" to="/">Transit Screen</Link>
+                <Link className="navbar-brand" to="/">Transit Board</Link>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div className="navbar-nav">
-                  <li><Link to="login"><span className="glyphicon glyphicon-log-in"></span>Login</Link></li>
+                  <li className="nav-item active"><Link to="login"><span className="sr-only"></span>Login</Link></li>
                   <li><Link to="signup"><span className="glyphicon glyphicon-signup"></span>Signup</Link></li>
                     {/* <a className="nav-item nav-link" href="#">Signup</a> */}
                   </div>

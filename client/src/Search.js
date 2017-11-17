@@ -8,7 +8,10 @@ var axios = require('axios');
 class Search extends Component {
     constructor(props) {
         super(props)
-        this.state = { address: 'San Francisco, CA' }
+        this.state = { 
+            address: 'San Francisco, CA', 
+            // transit:{}
+        }
         this.onChange = (address) => this.setState({ address })
       }
     
@@ -25,21 +28,22 @@ class Search extends Component {
             axios.post('/bus-routes', {
                 lat: lat,
                 lng: lng 
-            }).then(function (response) {
+            }).then(response => {
                 axios.get('/bus-routes');
-                console.log(response);
+                console.log(response, 'here');
+                console.log(response.data);
+                this.onChange = (transit) => this.setState({ transit })
+                    // transit:response.data
+                    // descriptions:response.data.busDescriptions
+                })
+                console.log(transit);
+                
             })
             .catch(function (error) {
                 console.log(error);
             })
             console.log ('made it here');
-          })
-          
-          
-
-          
-            
-          
+          }
 
         //   .then(results => {
         //     var location = getLatLng(results[0])
@@ -50,7 +54,7 @@ class Search extends Component {
 
           // get call to upload latLong
         //   .then(latln axios.get("/bus-Routes"))
-          .catch(error => console.error('Error', error))
+        //   .catch(error => console.error('Error', error))
       }
       
 
@@ -59,6 +63,7 @@ class Search extends Component {
             value: this.state.address,
             onChange: this.onChange,
         }
+        // var transit = this.state.transit.map((item, index) => (<p>item.number</p>))
         return(
             <div>
                 <h1>Transit Board</h1>
@@ -67,6 +72,9 @@ class Search extends Component {
                     <PlacesAutocomplete inputProps={inputProps} />
                     <button type="submit">Submit</button>
                 </form>
+                <div>
+                    {/* {transit} */}
+                </div>
             </div>
         )
     }
