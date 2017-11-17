@@ -9,7 +9,9 @@ class Search extends Component {
     constructor(props) {
         super(props)
         this.state = { 
-            address: 'San Francisco, CA', 
+            address: 'San Francisco, CA',
+            transit: 
+            
             // transit:{}
         }
         this.onChange = (address) => this.setState({ address })
@@ -32,11 +34,14 @@ class Search extends Component {
                 axios.get('/bus-routes');
                 console.log(response, 'here');
                 console.log(response.data);
-                this.onChange = (transit) => this.setState({ transit })
+                var transit = response.data;
+                
+                console.log(transit);
+                // this.onChange = (transit) => this.setState({ transit })
                     // transit:response.data
                     // descriptions:response.data.busDescriptions
                 })
-                console.log(transit);
+                
                 
             })
             .catch(function (error) {
@@ -55,10 +60,11 @@ class Search extends Component {
           // get call to upload latLong
         //   .then(latln axios.get("/bus-Routes"))
         //   .catch(error => console.error('Error', error))
-      }
+      
       
 
     render () {
+        
         const inputProps = {
             value: this.state.address,
             onChange: this.onChange,
