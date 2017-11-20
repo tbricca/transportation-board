@@ -106,6 +106,7 @@ class App extends Component {
              {/* Link to log in log out paths */}
             <Route path="/login" render={(props)=> <Login lift={this.liftTokenToState} />} />
             <Route path="/signup" render={(props)=> <Signup lift={this.liftTokenToState} />} />
+            <Route path="/logout" render={(props)=> <Logout lift={this.liftTokenToState} />} />
         </div>
       </Router>
       </div>       

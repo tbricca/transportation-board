@@ -94,16 +94,20 @@ class Home extends Component {
             <div className="card-block">
             
             {/* <h4> Agency: {agency} </h4> */}
-            <div className = "testimonal" >
+            {/* <div className = "testimonal" > */}
             
-            <h4> Client Testimonal: </h4>
+
+    {/* ///////////////////Just used for presentation purposes   */}
+            {/* <h4> Client Testimonal: </h4>
+            <br></br>
                 <p>
-                <h4>' I have never seen an easier to use transit tracker. <b>Thanks for making my life easier Tony!</b>' - Chad Coker  </h4>
-                <h4> "The only app that Tom Haverord can indorse." - Tom Haverford </h4>
-                <h4> <b>"Wish I thought of this"</b> - Matt Damon </h4>
-                <h4> "Did you see that Log in/Sign up feature?! <b>Game changer.</b> - Justen Cracraft " </h4>
-                </p>
-            </div>
+                <h5>' I have never seen an easier to use transit tracker. <b>Thanks for making my life easier Tony!</b>' - Chad Coker  </h5>
+                <h5> "The only app that Tom Haverord can endorse." - Tom Haverford </h5>
+                <h5> <b>"Wish I thought of this"</b> - Matt Damon </h5>
+                <h5> "Did you see that Log in/Sign up feature?! <b>Game changer.</b> - Justen Cracraft " </h5>
+                <h5> "Wow" - Owen Wilson </h5>
+                </p> */}
+            {/* </div> */}
             {/* <h4>Route Description: {routeDescription} </h4> */}
             </div>
             </div>

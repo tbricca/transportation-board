@@ -12,11 +12,9 @@ class Search extends Component {
     ////// unable to set state for routes or descriptions /////////////
             address: 'Seattle, WA', 
             data: [1,2],
-            busDescriptions: 'It will be great',
+            busDescriptions: [],
             theRoutes:[]
-            
-                
-            
+
             // busNumbers: [1,2],
             // busDescriptions: ''
         }
@@ -59,36 +57,11 @@ class Search extends Component {
                     theRoutes: theRoutesArr,
                     busDescriptions: theDescriptionsArr
                 })
-
-                
-                // console.log(theRoutes);
-                // routes.forEach(function(route){
-                //     theRoutes.push(route.shortName)
-                // });
-
-
-      /////////////cant store json file as a state /////////////
-                // base.setState({
-                //     data: {
-                //         theRoutes: json.theRoutes,
-                //         busDescriptions: json.busDescriptions
-                //     }
-                    
-                // }).catch(function(ex) {
-                //     console.log('parsing json failed', ex)
-                // })
-                
-                // console.log(response.data.busDescriptions);
-
-                // var busNumbers = response.data.theRoutes;
-                
-                // console.log(busNumbers);
-               
-                
             })
             .catch(function (error) {
                 console.log(error);
-                
+          ///    ////  // not console logging here 
+                // console.log(this.state.theRoutes, "bus descriptiones");
             })
             console.log ('made it here');
             
@@ -106,17 +79,29 @@ class Search extends Component {
           .catch(error => console.error('Error', error))
       }
       
-
     render () {
+
+ ////////// this is for converting address to latLong ///////// 
         const inputProps = {
             value: this.state.address,
             onChange: this.onChange,
         }
-        $.get('/busRoutes', {
-            q: 'theRoutes'
-          }).done(function(data) {
-            console.log(data, 'data call here');
-          });
+        // $.get('/busRoutes', {
+        //     q: 'theRoutes'
+        //   }).done(function(data) {
+        //     console.log(data, 'data call here');
+        //   });
+        let busDirections =  this.state.busDescriptions.map((item, index) => (
+            <li key = {index}> {item}</li>
+        ))
+
+          let mappedBuses =  this.state.theRoutes.map((item, index) => (
+              <li key = {index}> {item}</li>
+          ))
+////////////// Need to figure out why this isnt working ////////////////////////////////////////////////
+        //   let mappedDescriptions = this.state.theDescriptionsArr.map((item, index) => (
+        //       <li key = {index}> {item}</li>
+        //   ))
           
           console.log('Just fired AJAX request!');
 ////////////Axios call does not work here ///////////////////////
@@ -134,16 +119,38 @@ class Search extends Component {
         // }) 
         return(
             <div>
-                <h1>Transit Board</h1>
+                <div className = "title">
+                    <h1>Transit Board</h1>
+                </div>
                 <h4> A board to track all the transit around you <b>(Beta Version)</b></h4>
                 <form onSubmit={this.handleFormSubmit}>
                     <PlacesAutocomplete inputProps={inputProps} />
                     <button type="submit">Submit</button>
                 </form>
-                <div>
-                    <h4><b>Your Bus Routes for this address:</b> {this.state.theRoutes} </h4>
-                    <h4><b>Bus Route Descriptions:</b> {this.state.busDescriptions} </h4>
+                
+                <div className="card routes" >
+                {/* style="width: 20rem;" */}
+                    {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
+                    <div className="card-block">
+                        <h4 className="card-title"><b>Bus Route Number</b></h4>
+                        <p className="card-text">{mappedBuses}</p>
+                        <a href="http://kingcounty.gov/depts/transportation/metro/schedules-maps.aspx" className="btn btn-primary">Full King County Bus Schedule</a>
+                    </div>
                 </div>
+                <div className="card descriptions" >
+                {/* style="width: 20rem;" */}
+                    {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}
+                    <div className="card-block">
+                        <h4 className="card-title"><b>Bus Route Description</b></h4>
+                        <p className="card-text">{busDirections}</p>
+                        <a href="http://kingcounty.gov/depts/transportation/metro/schedules-maps/maps/route.aspx" className="btn btn-primary"> King County Bus Map</a>
+                    </div>
+                </div>
+                {/* <div>
+                    <h4><b> Bus Routes for this address:</b> {mappedBuses} </h4>
+                    <h4><b> Neighbordhoods it goes to:</b> {busDirections} </h4>
+                    
+                </div> */}
 
             </div>
         )

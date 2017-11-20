@@ -20,3 +20,14 @@
 .title {
   font-family: 'Vollkorn SC', serif;
 }
+
+.card {
+  display: inline-block;
+}
+
+.routes {
+  width: 20rem;
+}
+.descriptions {
+  width: 30rem
+}
