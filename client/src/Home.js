@@ -89,10 +89,10 @@ class Home extends Component {
         return (
             <div>
             <Search />
-            <div className="container-fluid">
+            {/* <div className="container-fluid">
             <div className="card">
             <div className="card-block">
-            
+             */}
             {/* <h4> Agency: {agency} </h4> */}
             {/* <div className = "testimonal" > */}
             
@@ -109,11 +109,11 @@ class Home extends Component {
                 </p> */}
             {/* </div> */}
             {/* <h4>Route Description: {routeDescription} </h4> */}
-            </div>
-            </div>
+            {/* </div> */}
+            {/* // </div> */}
             
             {/* <p>Place second api here</p> */}
-            </div>
+            {/* </div> */}
             </div>
         )
         

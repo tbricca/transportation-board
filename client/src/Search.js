@@ -123,10 +123,13 @@ class Search extends Component {
                     <h1>Transit Board</h1>
                 </div>
                 <h4> A board to track all the transit around you <b>(Beta Version)</b></h4>
+                <div className = "search-box">
                 <form onSubmit={this.handleFormSubmit}>
                     <PlacesAutocomplete inputProps={inputProps} />
-                    <button type="submit">Submit</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    {/* <button type="submit">Submit</button> */}
                 </form>
+                </div>
                 
                 <div className="card routes" >
                 {/* style="width: 20rem;" */}

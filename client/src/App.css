@@ -1,3 +1,7 @@
+body {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
 .App {
   text-align: center;
 }
@@ -18,7 +22,7 @@
 }
 
 .title {
-  font-family: 'Vollkorn SC', serif;
+  font-family: 'Exo 2', sans-serif;
 }
 
 .card {
@@ -30,4 +34,16 @@
 }
 .descriptions {
   width: 30rem
+}
+
+.navbar-brand {
+  font-family: 'Exo 2', sans-serif;
+}
+
+.search-box {
+  width: 70%;
+  display: block;
+  border: 3px;
+  margin: auto;
+
 }
