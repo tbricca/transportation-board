@@ -26,7 +26,6 @@ router.post("/", function(req, res, next){
             console.log("XXXXXXXXXX", body)
   /////// console.log(response);
             
-            
         if (!error && response.statusCode == 200) {
             
             console.log(body, "bus routes");
@@ -50,23 +49,24 @@ router.post("/", function(req, res, next){
             
             console.log(routes.shortname, "ahhhhhhhhhhhhhh");
 
-    ////////////No longer need XML parsing because I was able to send back data a JSON file         
-            // for(var i = 0; i < length; i++)
-            // var xml = (body);
-            // parseString(xml, function (err, result) {
-            //     console.log("foofoofoofoofoofoofoofoo");
-            //     console.log();
-            //     var agency = result.response.data[0].references[0].agencies[0];
-            //     var routes = result.response.data[0].list[0].route.map(route => {
-            //         return route;
                 }
                 // this does not get sent back
                 res.send({theRoutes, busDescriptions});
             });
         });
     
+   //////////// Api call to get bus stops for a particular location ////////////////////
+        router.post('/,' function(req, res, next){
+            lat = req.body.lat;
+            lng = req.body.lng;
 
-
+            request({
+                url: "http://api.pugetsound.onebusaway.org/api/where/stops-for-location.json?key=TEST&lat="+lat+"&lon="+lng,
+                
+            })
+        }
+   
+      
 // pass through term like this /:Latlong 
 router.get("/", function(req, res, next){
     console.log("you got hit");
