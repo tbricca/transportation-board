@@ -13,28 +13,29 @@ var lng;
 
 
 router.post("/", function(req, res, next){
-   console.log(req.body.lat, req.body.lng, "lat lng here");
+//    console.log(req.body.lat, req.body.lng, "lat lng here");
+////////////this gets the lat long from the address on the front end
     lat = req.body.lat;
     lng = req.body.lng;
-   console.log(lat,lng, "variables");
-//    res.redirect('/');
+
     request({
         url: "http://api.pugetsound.onebusaway.org/api/where/routes-for-location.json?key=ec76e3f1-3c97-4f4a-a55e-447cfffa457b&lat="+lat+"&lon="+lng,
         // busRoute: busRoute
         
         }, function (error, response, body) {
-            console.log("XXXXXXXXXX", body)
+            // console.log("XXXXXXXXXX", body)
   /////// console.log(response);
             
         if (!error && response.statusCode == 200) {
             
-            console.log(body, "bus routes");
-            console.log(JSON.parse(body).data.list, "bus routes");
+            // console.log(body, "bus routes");
+            // console.log(JSON.parse(body).data.list, "bus routes");
             
 ////////array to get specific bus routes////////////////////////
             var theRoutes = []
             var routes = JSON.parse(body).data.list;
             routes.forEach(function(route){
+                console.log(JSON.parse(body).data.list);
                 theRoutes.push(route.shortName)
             });
     //////// array to get bus decriptions //////////////////////////////
@@ -43,28 +44,37 @@ router.post("/", function(req, res, next){
             descriptions.forEach(function(description) {
                 busDescriptions.push(description.description)
             });
-            
-            console.log(theRoutes);
-            console.log(busDescriptions);
-            
-            console.log(routes.shortname, "ahhhhhhhhhhhhhh");
-
+      
                 }
-                // this does not get sent back
+  ///////////////// this sends the data to the front end ////
                 res.send({theRoutes, busDescriptions});
             });
-        });
+    
     
    //////////// Api call to get bus stops for a particular location ////////////////////
-        router.post('/,' function(req, res, next){
-            lat = req.body.lat;
-            lng = req.body.lng;
-
             request({
                 url: "http://api.pugetsound.onebusaway.org/api/where/stops-for-location.json?key=TEST&lat="+lat+"&lon="+lng,
                 
-            })
-        }
+            }, function (error, response, body) {
+                // console.log ("xxnum2", body);
+
+                if (!error && response.statusCode == 200) {
+                    // console.log(body, "bus stops for location");
+                    console.log(JSON.parse(body).data.list[0].name, "bus stops per location refined");
+                    var theStops = []
+                    var stops = JSON.parse(body).data.list;
+                    stops.forEach(function(stop) {
+                        theStops.push(stop.name)
+                    });
+          //////////////////////// this gets the proper data //////////////////////////////
+                    console.log(theStops);
+                }
+ ///////// cannot send this back without it breakiing it, ////////////////////////
+                // res.send({theStops});
+            });
+   /////////// out of scope, breaks it  ////////////////////////////
+            // res.send({theRoutes, busDescriptions, theStops})
+        });
    
       
 // pass through term like this /:Latlong 

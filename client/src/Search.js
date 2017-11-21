@@ -13,7 +13,8 @@ class Search extends Component {
             address: 'Seattle, WA', 
             data: [1,2],
             busDescriptions: [],
-            theRoutes:[]
+            theRoutes:[],
+            // theStops: []
 
             // busNumbers: [1,2],
             // busDescriptions: ''
@@ -33,6 +34,7 @@ class Search extends Component {
             var lat = latLng.lat;
             var lng = latLng.lng;
             console.log(lat, lng);
+
             axios.post('/bus-routes', {
                 lat: lat,
                 lng: lng 
@@ -46,20 +48,22 @@ class Search extends Component {
          /////////// this worked on the backend so i tried it here; it didn't work ///////////
                 var theRoutesArr = body.data.theRoutes;
                 var theDescriptionsArr = body.data.busDescriptions;
+                // var theStopsArr = body.data.theStops;
                 // console.log(theRoutes);
 
                 // var theRoutes = body.data;
                 
                 //     theRoutes: 
                 // })
-                console.log(theRoutesArr);
+                // console.log(theRoutesArr);
                 this.setState({
                     theRoutes: theRoutesArr,
-                    busDescriptions: theDescriptionsArr
+                    busDescriptions: theDescriptionsArr,
+                    // theStops: theStopsArr
                 })
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(theStops);
           ///    ////  // not console logging here 
                 // console.log(this.state.theRoutes, "bus descriptiones");
             })
@@ -95,9 +99,13 @@ class Search extends Component {
             <li key = {index}> {item}</li>
         ))
 
-          let mappedBuses =  this.state.theRoutes.map((item, index) => (
-              <li key = {index}> {item}</li>
-          ))
+        let mappedBuses =  this.state.theRoutes.map((item, index) => (
+            <li key = {index}> {item}</li>
+        ))
+
+        // let mappedStops = this.state.theStops.map((item, index) => (
+        //     <li key = {index}> {item}</li>
+        // ))
 ////////////// Need to figure out why this isnt working ////////////////////////////////////////////////
         //   let mappedDescriptions = this.state.theDescriptionsArr.map((item, index) => (
         //       <li key = {index}> {item}</li>
@@ -148,6 +156,7 @@ class Search extends Component {
                         <p className="card-text">{busDirections}</p>
                         <a href="http://kingcounty.gov/depts/transportation/metro/schedules-maps/maps/route.aspx" className="btn btn-primary"> King County Bus Map</a>
                     </div>
+                    {/* <p> {mappedStops} </p> */}
                 </div>
                 {/* <div>
                     <h4><b> Bus Routes for this address:</b> {mappedBuses} </h4>
