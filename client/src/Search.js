@@ -16,8 +16,6 @@ class Search extends Component {
             theRoutes:[],
             // theStops: []
 
-            // busNumbers: [1,2],
-            // busDescriptions: ''
         }
         this.onChange = (address) => this.setState({ address })
       }
@@ -39,23 +37,15 @@ class Search extends Component {
                 lat: lat,
                 lng: lng 
             }).then((body) => {
-            // }).then(function (json) {
-                /* axios.get('/bus-routes'); */
+        
         //////////// this is where I get the json(body) file back, but i can't save it to a state/////
                 console.log(body, "here body")
                 // console.log(json, 'here');
-               
+
          /////////// this worked on the backend so i tried it here; it didn't work ///////////
                 var theRoutesArr = body.data.theRoutes;
                 var theDescriptionsArr = body.data.busDescriptions;
-                // var theStopsArr = body.data.theStops;
-                // console.log(theRoutes);
-
-                // var theRoutes = body.data;
-                
-                //     theRoutes: 
-                // })
-                // console.log(theRoutesArr);
+      
                 this.setState({
                     theRoutes: theRoutesArr,
                     busDescriptions: theDescriptionsArr,
@@ -70,16 +60,7 @@ class Search extends Component {
             console.log ('made it here');
             
           })
-
-        //   .then(results => {
-        //     var location = getLatLng(results[0])
-        //     this.setState({
-        //         location:location
-        //     })
-        //   })
-
-          // get call to upload latLong
-        //   .then(latln axios.get("/bus-Routes"))
+         
           .catch(error => console.error('Error', error))
       }
       
@@ -90,11 +71,7 @@ class Search extends Component {
             value: this.state.address,
             onChange: this.onChange,
         }
-        // $.get('/busRoutes', {
-        //     q: 'theRoutes'
-        //   }).done(function(data) {
-        //     console.log(data, 'data call here');
-        //   });
+       
         let busDirections =  this.state.busDescriptions.map((item, index) => (
             <li key = {index}> {item}</li>
         ))
@@ -106,25 +83,10 @@ class Search extends Component {
         // let mappedStops = this.state.theStops.map((item, index) => (
         //     <li key = {index}> {item}</li>
         // ))
-////////////// Need to figure out why this isnt working ////////////////////////////////////////////////
-        //   let mappedDescriptions = this.state.theDescriptionsArr.map((item, index) => (
-        //       <li key = {index}> {item}</li>
-        //   ))
-          
+
           console.log('Just fired AJAX request!');
-////////////Axios call does not work here ///////////////////////
-        // axios.get('/bus-routes')
-        // .then(response => { 
-        //     console.log(response, "XKDJFFNJD");
-        //     var theRoutes = response.data.theRoutes;
-        //     var busDescriptions = response.data.busDescriptions;
-        //     this.setState({ theRoutes: theRoutes});
-        //     this.setState({ busDescriptions: busDescriptions});
-        // });
-        // console.log(response);
-        // this.setState({
-        //     busNumbers: response.data.theRoutes,
-        // }) 
+////////////Axios get call does not work here ///////////////////////
+       
         return(
             <div>
                 <div className = "title">
