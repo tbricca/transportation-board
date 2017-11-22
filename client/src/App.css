@@ -1,5 +1,6 @@
 body {
   font-family: 'Roboto Condensed', sans-serif;
+  background-color: lightblue;
 }
 
 .App {
@@ -27,6 +28,7 @@ body {
 
 .card {
   display: inline-block;
+  background-color: rgb(226, 220, 220);
 }
 
 .routes {
@@ -36,8 +38,9 @@ body {
   width: 30rem
 }
 
-.navbar-brand {
+.navbar {
   font-family: 'Exo 2', sans-serif;
+  background-color: lightblue;
 }
 
 .search-box {

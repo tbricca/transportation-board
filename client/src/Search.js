@@ -130,7 +130,10 @@ class Search extends Component {
                 <div className = "title">
                     <h1>Transit Board</h1>
                 </div>
-                <h4> A board to track all the transit around you <b>(Beta Version)</b></h4>
+                <h4> A board to track the bus routes closest to you in Seattle <b>(Beta Version)</b></h4>
+                
+                <h6> Insert your address in the text box, click submit and the bus routes will display below.</h6>
+                <br />
                 <div className = "search-box">
                 <form onSubmit={this.handleFormSubmit}>
                     <PlacesAutocomplete inputProps={inputProps} />
@@ -138,7 +141,7 @@ class Search extends Component {
                     {/* <button type="submit">Submit</button> */}
                 </form>
                 </div>
-                
+                <br />
                 <div className="card routes" >
                 {/* style="width: 20rem;" */}
                     {/* <img className="card-img-top" src="..." alt="Card image cap" /> */}

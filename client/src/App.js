@@ -83,8 +83,8 @@ class App extends Component {
                 <Link className="navbar-brand" to="/"><b>Transit Board</b></Link>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                   <div className="navbar-nav">
-                  <li className="nav-item active"><Link to="login"><span className="sr-only"></span>Login</Link></li>
-                  <li><Link to="signup"><span className="glyphicon glyphicon-signup"></span>Signup</Link></li>
+                  {/* <li className="nav-item active"><Link to="login"><span className="sr-only"></span>Login</Link></li>
+                  <li><Link to="signup"><span className="glyphicon glyphicon-signup"></span>Signup</Link></li> */}
                     {/* <a className="nav-item nav-link" href="#">Signup</a> */}
                   </div>
                   {/* <ul className="nav navbar-nav navbar-right">

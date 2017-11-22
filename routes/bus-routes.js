@@ -4,8 +4,11 @@ var axios = require('axios');
 var parseString = require('xml2js').parseString;
 var bodyParser = require('body-parser')
 
-var apiUrl = 'http://api.pugetsound.onebusaway.org/api/where/routes-for-location.xml?key=ec76e3f1-3c97-4f4a-a55e-447cfffa457b&lat=47.6120&lon=-122.335167';
-var cityMapper = "https://developer.citymapper.com/api/1/singlepointcoverage/?coord=51.578973%2C-0.124147&key=8d3b8bb18fc668fdf342d8e09fcf3249";
+////// Can store them in the same object, but can't store the variable properly
+// var apiUrl = [
+//     "http://api.pugetsound.onebusaway.org/api/where/routes-for-location.json?key=ec76e3f1-3c97-4f4a-a55e-447cfffa457b&lat="+lat+"&lon="+lng,
+//     "http://api.pugetsound.onebusaway.org/api/where/stops-for-location.json?key=ec76e3f1-3c97-4f4a-a55e-447cfffa457b&lat="+lat+"&lon="+lng
+// ]
 
 var request = require('request');
 var lat;
@@ -50,28 +53,26 @@ router.post("/", function(req, res, next){
                 res.send({theRoutes, busDescriptions});
             });
     
-    
    //////////// Api call to get bus stops for a particular location ////////////////////
-            request({
-                url: "http://api.pugetsound.onebusaway.org/api/where/stops-for-location.json?key=TEST&lat="+lat+"&lon="+lng,
+            // request({
+            //     url: "http://api.pugetsound.onebusaway.org/api/where/stops-for-location.json?key=ec76e3f1-3c97-4f4a-a55e-447cfffa457b&lat="+lat+"&lon="+lng,
                 
-            }, function (error, response, body) {
-                // console.log ("xxnum2", body);
+            // }, function (error, response, body) {
 
-                if (!error && response.statusCode == 200) {
-                    // console.log(body, "bus stops for location");
-                    console.log(JSON.parse(body).data.list[0].name, "bus stops per location refined");
-                    var theStops = []
-                    var stops = JSON.parse(body).data.list;
-                    stops.forEach(function(stop) {
-                        theStops.push(stop.name)
-                    });
+            //     if (!error && response.statusCode == 200) {
+
+            //         console.log(JSON.parse(body).data.list[0].name, "bus stops per location refined");
+            //         var theStops = []
+            //         var stops = JSON.parse(body).data.list;
+            //         stops.forEach(function(stop) {
+            //             theStops.push(stop.name)
+            //         });
           //////////////////////// this gets the proper data //////////////////////////////
-                    console.log(theStops);
-                }
+                //     console.log(theStops);
+                // }
  ///////// cannot send this back without it breakiing it, ////////////////////////
                 // res.send({theStops});
-            });
+            // });
    /////////// out of scope, breaks it  ////////////////////////////
             // res.send({theRoutes, busDescriptions, theStops})
         });
