@@ -74,6 +74,8 @@ router.post('/signup', function(req, res, next) {
   });
 });
 
+
+
 // This is checked on a browser refresh
 router.post('/me/from/token', function(req, res, next) {
   // check header or url parameters or post parameters for token
