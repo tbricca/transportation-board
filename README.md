@@ -36,6 +36,8 @@ This took a great deal of my time, but it was crucial for the functionality of m
 
 I knew going into this project that it would be a learning experience for me. I knew I was taking on more than I had done in previous projects in terms of complexity working with various apis. That being said, I would've planned it out better and also would've done the Google api call first. I went into it thinking I could do them all on the front end and pass the lat and long through a stored variable. This obviously proved false. 
 
+![Transportation Board Screen Shot](screenshot.jpg)
+
 ##  Going forward 
 
 I plan on adding a few more apis to this project to improve its functionality and heighten my understanding of transit apis and how they obtain their data. 
